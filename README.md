@@ -6,7 +6,7 @@
 
 ### Inicializar projeto Node
 
-> npm init -y
+> npm install
 
 ### Rodar programa
 
