@@ -1,5 +1,5 @@
 
-import { Aluno, NotaPeso, CarteiraDinheiro, Produto, User, Diretor } from "./interface";
+import { Aluno, NotaPeso, CarteiraDinheiro, Produto, User, Diretor, Funcionario } from "./interface";
 
 // 1. Crie uma função que receba 2 números e retorne um objeto
 // contendo a média e também um indicador booleano de
@@ -137,12 +137,12 @@ function excluirProduto(produtos: Produto[], id: number): void {
 const usuario: User = {
     nome: "Leonardo",
     idade: 28,
-    ocupacao: "Dev",
+    ocupacao: "Desenvolvedor",
 }
 const usuario1: User = {
     nome: "Leonardo",
     idade: 28,
-    ocupacao: "Dev",
+    ocupacao: "Desenvolvedor",
     salario: 4000
 }
 
@@ -150,15 +150,12 @@ verificaSalario(usuario)
 verificaSalario(usuario1)
 
 function verificaSalario(usuario: User): void {
-    if (!usuario.salario) {
-        console.log(`${usuario.nome}, ${usuario.idade} anos, ${usuario.ocupacao}, salário N/A`);
-    } else {
-        console.log(`${usuario.nome}, ${usuario.idade} anos, ${usuario.ocupacao}, salário ${usuario.salario}`);
-    }
+
+    console.log(`${usuario.nome}, ${usuario.idade} anos, ${usuario.ocupacao}, ${usuario.salario ?? 'salário N/A'}`);
+
 }
 
-
-// Usando o contexto do exercício 6, crie um tipo de usuário que
+// 6. Usando o contexto do exercício 6, crie um tipo de usuário que
 // representa funcionários da diretoria da empresa. O tipo Diretor deve
 // conter as propriedades: nome, idade, salário (opcional) e nível de
 // comissionamento (numérico). Crie uma função que receba um
@@ -166,29 +163,27 @@ function verificaSalario(usuario: User): void {
 // a. “Diretor(a) Daphne, 23 anos, comissão nível 5, salário R$ 1000”
 // b. “Diretor(a) Daphne, 23 anos, comissão nível 5, salário N/A”
 
+
 const diretor: Diretor = {
     nome: "Leonardo",
     idade: 28,
-    ocupacao: "Dev",
-    nivelComiisionamento: 5
+    ocupacao: "Diretor",
+    nivelComisionamento: 5
 }
 const diretor1: Diretor = {
     nome: "Leonardo",
     idade: 28,
-    ocupacao: "Dev",
+    ocupacao: "Diretor",
     salario: 4000,
-    nivelComiisionamento: 5
+    nivelComisionamento: 5
 }
 
 mostraInformacaoDiretor(diretor)
 mostraInformacaoDiretor(diretor1)
 
 function mostraInformacaoDiretor(diretor: Diretor): void {
-    if (!diretor.salario) {
-        console.log(`${diretor.nome}, ${diretor.idade} anos, comissão nivel ${diretor.nivelComiisionamento}, ${diretor.ocupacao}, salário N/A`);
-    } else {
-        console.log(`${diretor.nome}, ${diretor.idade} anos, comissão nivel ${diretor.nivelComiisionamento}, ${diretor.ocupacao}, salário ${diretor.salario}`);
-    }
+
+    console.log(`${diretor.nome}, ${diretor.idade} anos, comissão nivel ${diretor.nivelComisionamento}, ${diretor.ocupacao}, ${diretor.salario ?? 'salário N/A'}`);
 }
 
 
@@ -198,13 +193,41 @@ function mostraInformacaoDiretor(diretor: Diretor): void {
 // a. O mesmo que o exercício 5, em caso de objeto User.
 // b. O mesmo que o exercício 6, em caso de objeto Diretor.
 
-type userOuDiretor = User & Diretor
-
-const listauserOuDiretor: userOuDiretor[] = [
+const funcionario: Funcionario[] = [
     {
         nome: "Leonardo",
         idade: 28,
-        ocupacao: "Dev",
-        nivelComiisionamento: 5
+        ocupacao: "Diretor",
+        nivelComisionamento: 4
+    },
+    {
+        nome: "Jéssica",
+        idade: 27,
+        ocupacao: "Diretor",
+        nivelComisionamento: 5,
+        salario: 1500
+    },
+    {
+        nome: "Pedro",
+        idade: 28,
+        ocupacao: "Desenvolvedor",
+    },
+    {
+        nome: "Fulano",
+        idade: 27,
+        ocupacao: "Desenvolvedor",
+        salario: 1500
     },
 ]
+function mostraInformacao(funcionarios: Funcionario[]) {
+
+    funcionarios.forEach((funcionario) => {
+        if ('nivelComisionamento' in funcionario) {
+            console.log(`${funcionario.nome}, ${funcionario.idade} anos, comissão nivel ${funcionario.nivelComisionamento}, ${funcionario.ocupacao}, ${funcionario.salario ?? 'salário N/A'}`);
+        } else {
+            console.log(`${funcionario.nome}, ${funcionario.idade} anos, ${funcionario.ocupacao}, ${funcionario.salario ?? 'salário N/A'}`);
+        }
+    })
+}
+
+mostraInformacao(funcionario)

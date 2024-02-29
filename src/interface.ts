@@ -1,5 +1,5 @@
 export interface Aluno {
-    media:number
+    media: number
     situacao: boolean
 }
 
@@ -24,14 +24,17 @@ export interface Produto {
 export interface User {
     nome: string,
     idade: number,
-    ocupacao: string,
+    ocupacao: ocupacao,
     salario?: number
 }
+
+type ocupacao = "Desenvolvedor" | "Diretor"
 
 export interface Diretor {
     nome: string,
     idade: number,
-    ocupacao: string,
+    ocupacao: ocupacao,
+    nivelComisionamento: number
     salario?: number,
-    nivelComiisionamento: number
 }
+export type Funcionario = User | Diretor
